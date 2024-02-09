@@ -1,0 +1,42 @@
+{%  extends 'base.html' %}
+
+
+{% block title %}
+    Default title
+{% endblock%}
+
+
+
+{% block content %}
+
+     <form method="post">
+    {% csrf_token %}
+    {{ form}}
+        <input type="submit" value="Search">
+    </form>
+
+    <ul>
+    {%  for v in vijesti %}
+        <li>
+        <h4>{{ v.naslov }}</h4>
+        <p>{{ v.sadrzaj }}</p>
+            {%  if user == v.autor or perms.vijesti.delete_vijest %}
+                <form method="post" action="{% url 'delete' %}">
+                {% csrf_token %}
+                <button type="submit" value="{{ v.id }}" name="vijestid">Delete</button>
+                </form>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+    </ul>
+
+
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'kreiranje' %}">
+    {% csrf_token %}
+    {{ vijestform}}
+        <input type="submit" value="Create">
+    </form>
+    {% endif %}
+{% endblock %}

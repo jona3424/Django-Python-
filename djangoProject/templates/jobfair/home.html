@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+<h1>SI3PSI- K2-Zadatak</h1>
+     {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            {% endif %}
+</header>
+
+
+        <div style="display: inline-block; border: #999 solid 1px; padding: 10px">
+            <div style="position:absolute; margin-top: -25px;background-color: white; padding: 2px">
+                Meni
+            </div>
+
+            <button>Pretraga</button>
+            <br>
+            <button>Pregled</button>
+        </div>
+<div style="position: absolute;margin: -80px 0px 0px 120px;max-width: 137px;">
+            <form method="post" >
+                {% csrf_token %}
+                {{ form }}
+                 <input type="submit" value="Search" >
+            </form>
+</div>
+
+<footer style="
+    position: fixed;
+    bottom: 0px;
+    width: 100%;">
+    <hr>
+    <p>Copyright</p>
+</footer>
+
+</body>
+
+
+</html>

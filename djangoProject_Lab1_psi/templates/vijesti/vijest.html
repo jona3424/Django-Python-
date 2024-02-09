@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ vijest.naslov }}
+{% endblock %}
+
+{%  block content %}
+    <h1>{{ vijest.naslov }}</h1>
+     <ul>
+        {% for v in komentari %}
+        <li>
+            <h4>{{ v.autor }}</h4>
+            <p>{{ v.sadrzaj }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form method="post">
+         {% csrf_token %}
+         {{ form }}
+         <input type="submit" value="Submit">
+    </form>
+
+{%  endblock %}
